@@ -18,23 +18,23 @@ class Account {
         }
     }
 
-    async findByEmail(email) {
+    async findByUserName(username) {
         
         try {
-            const res = await this.collection.findOne({ email });
-            logger(`finding account with email ${email}`);
+            const res = await this.collection.findOne({ username });
+            logger(`finding account with username ${username}`);
             return res;
         } catch (err) {
-            logger("error in account.findByEmail");
+            logger("error in account.findByUsername");
             throw err;
         }
     }
 
-    async update(email, obj) {
+    async update(username, obj) {
 
         try {
-            const res = await this.collection.updateOne({ email }, {$set: obj});
-            logger(`updating account with email ${email}`);
+            const res = await this.collection.updateOne({ username }, {$set: obj});
+            logger(`updating account with username ${username}`);
             return res.modifiedCount;
         } catch (err) {
             logger("error in account.update");
@@ -42,10 +42,10 @@ class Account {
         }
     }
 
-    async remove(email) {
+    async remove(username) {
         try {
-            const res = await this.collection.deleteOne({ email });
-            logger(`deleting account with email ${email}`);
+            const res = await this.collection.deleteOne({ username });
+            logger(`deleting account with username ${username}`);
             return res.deletedCount;
         } catch (err) {
             logger("error in account.remove");
@@ -55,3 +55,4 @@ class Account {
 
 }
 
+module.exports = Account;

@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useContext, useEffect } from "react";
+import { AuthContext } from "./contexts/AuthContext";
+import Router from "./components/Router";
+import { api } from "../config";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const { auth, setAuth } = useContext(AuthContext);
+  useEffect(() => {
+    if (auth.username) { return; }
+    (async () => {
+      const response = await fetch(api + "/account/refresh", { credentials: "include" });
+      if (response.status != 200) {
+        return;
+      }
+      const data = await response.json();
+      setAuth(data);
+    })()
+  }, [])
 
   return (
-    <div className='container'>
-      <h1>Hello every body
-        <i className='material-icons'>send</i>
-      </h1>
-    </div>
-  )
+    <Router />
+  );
 }
 
 export default App

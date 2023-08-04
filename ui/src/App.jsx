@@ -1,26 +1,31 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Router from "./components/Router";
-import { api } from "../config";
+import Loading from "./components/Loading";
+import UseRefresh from "./hooks/UseRefresh";
 
 
 function App() {
 
   const { auth, setAuth } = useContext(AuthContext);
+  const [result, setResult] = useState();
+  const refresh = UseRefresh();
+
   useEffect(() => {
     if (auth.username) { return; }
     (async () => {
-      const response = await fetch(api + "/account/refresh", { credentials: "include" });
-      if (response.status != 200) {
-        return;
-      }
-      const data = await response.json();
-      setAuth(data);
+
+      const res = await refresh();
+      setResult(res);
     })()
   }, [])
 
+
   return (
-    <Router />
+
+    result
+      ? <Router />
+      : <Loading />
   );
 }
 

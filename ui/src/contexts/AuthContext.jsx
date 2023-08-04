@@ -1,16 +1,16 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useRef } from "react";
 
 const AuthContext = createContext({});
 
 const AuthContextProvider = ({ children }) => {
     const [auth, setAuth] = useState({
-        accessToken: "",
         username: "",
         roles: []
     });
+    const accessToken = useRef("");
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth }}>
+        <AuthContext.Provider value={{ auth, setAuth, accessToken }}>
             {children}
         </AuthContext.Provider>
     );

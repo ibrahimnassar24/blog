@@ -19,3 +19,22 @@ nav {
     height: auto;
     
 }
+
+
+#preloader{
+    margin: 30vh auto;
+    width: 100px;
+    height: 100px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    flex-direction: column;
+    
+}
+
+.preloader-wrapper{
+    flex-shrink: 0;
+}

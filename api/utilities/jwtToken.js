@@ -8,7 +8,7 @@ const generateAccessToken = (obj) => {
         jwt.sign(
             obj,
             accessKey,
-            { expiresIn: 60 * 3 },
+            { expiresIn: 60 * 0.5 },
             (err, token) => {
                 if (err) { rejected(err) }
                 resolved(token);

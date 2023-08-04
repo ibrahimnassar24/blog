@@ -11,6 +11,7 @@ const NavBar = () => {
                 <div className="nav-wrapper">
                     <ul>
                         <li><NavLink to="/">Home</NavLink></li>
+                        <li><NavLink to="/test">Test</NavLink></li>
                         <PublicOnly>
                             <li><NavLink to="/signin">Sign In</NavLink></li>
                             <li><NavLink to="/signup">Sign Up</NavLink></li>

@@ -3,6 +3,7 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import SignOut from "../pages/SignOut";
 import Home from "../pages/Home";
+import Test from "../pages/test";
 import Profile from "../pages/Profile";
 import Unauthorized from "../pages/Unauthorized";
 import NotFound from "../pages/NotFound";
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
     createRoutesFromElements(
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Home />} />
+                <Route path="/test" element={<Test />} />
                 <Route element={<AuthenticatedLayout />} >
                     <Route path="/profile" element={<Profile />} />
                 </Route>
